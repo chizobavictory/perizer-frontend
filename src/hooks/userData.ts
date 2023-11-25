@@ -10,7 +10,7 @@ const useUserData = (searchQuery: string = "") => {
       try {
         let url = "https://pertizer-task.onrender.com/api/users";
         if (searchQuery) {
-          url += `?name=${searchQuery}`; // Add other query parameters as needed
+          url += `?name=${searchQuery}`; 
         }
 
         const response = await fetch(url);

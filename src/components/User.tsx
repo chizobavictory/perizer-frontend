@@ -1,12 +1,11 @@
-// User.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import useUserData from "../hooks/userData";
 import UserCard from "./UserCard";
 import { useDebounce } from "use-debounce";
 
 const User: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearchQuery] = useDebounce(searchQuery, 1000); // Debounce search query
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 1000);
   const userData = useUserData(debouncedSearchQuery);
 
   const totalUser = userData ? userData.length : 0;
