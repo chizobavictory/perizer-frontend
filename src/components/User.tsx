@@ -1,34 +1,15 @@
+// User.tsx
 import React, { useState, useEffect } from "react";
 import useUserData from "../hooks/userData";
-import useSearchUserData from "../hooks/searchUserData";
-import { UserData } from "../hooks/userData.interface";
 import UserCard from "./UserCard";
-
-interface GenderFilter {
-  id: number;
-  text: string;
-  checked: boolean;
-}
+import { useDebounce } from "use-debounce";
 
 const User: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState<UserData[] | null>(null);
+  const [debouncedSearchQuery] = useDebounce(searchQuery, 500); // Debounce search query
+  const userData = useUserData(debouncedSearchQuery);
 
-  // Use the useUserData hook to get all users
-  const userData = useUserData();
-
-  // Use the useSearchUserData hook to search users based on criteria
-  const searchedUserData = useSearchUserData({ name: searchQuery });
-
-  useEffect(() => {
-    if (searchedUserData !== null) {
-      setFilteredUsers(searchedUserData);
-    } else if (userData !== null) {
-      setFilteredUsers(userData);
-    }
-  }, [searchedUserData, userData]);
-
-  const totalUser = filteredUsers ? filteredUsers.length : 0;
+  const totalUser = userData ? userData.length : 0;
 
   const handleSearchQueryChange = (query: string) => {
     setSearchQuery(query);
@@ -52,7 +33,7 @@ const User: React.FC = () => {
       </div>
       <div className="w-full border-t mt-4 border-gray-300" />
       <div className="flex flex-col gap-4 pt-6">
-        {filteredUsers !== null ? filteredUsers.map((user, index) => <UserCard key={index} user={user} />) : "Loading..."}
+        {userData !== null ? userData.map((user, index) => <UserCard key={index} user={user} />) : "Loading..."}
       </div>
     </div>
   );

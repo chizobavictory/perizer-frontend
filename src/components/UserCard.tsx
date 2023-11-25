@@ -30,17 +30,17 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
         </div>
 
         <div className="flex flex-col gap-1">
-          <p className="text-neutral-900 text-base font-[degularmedium]">{`Name: ${user.name}`}</p>
-          <p className="text-gray-600 text-sm font-[degularmedium]">{`Gender: ${user.gender}`}</p>
-          <p className="text-gray-600 text-sm font-[degularmedium]">{`Email: ${user.email}`}</p>
-          <p className="text-gray-600 text-sm font-[degularmedium]">{`Is Active: ${user.isActive}`}</p>
+          <p className="text-neutral-900 text-base font-[degularmedium]">{`${user.name}`}</p>
+          <p className="text-neutral-900 text-base font-[degularmedium]">{`${user.phone}`}</p>
+          <p className="text-neutral-900 text-base font-[degularmedium]">{`Gender: ${user.gender}`}</p>
+          <p className="text-neutral-900 text-base font-[degularmedium]">{`Email: ${user.email}`}</p>
         </div>
       </div>
       <div className="flex flex-col gap-1 items-end">
-        <p className="text-base font-[degularbold] text-neutral-900">{`Role: ${user.role}`}</p>
-        <p className="text-base font-[degularbold] text-neutral-900">{`Phone: ${user.phone}`}</p>
-        <p className="text-sm font-[degularmedium] text-gray-600">{`Location: ${user.location}`}</p>
-        <p className="text-base font-[degularbold] text-neutral-900">{`Team: ${user.team.name}`}</p>
+        <p className="text-neutral-900 text-base font-[degularmedium]">{`Role: ${user.role}`}</p>
+        <p className="text-neutral-900 text-base font-[degularmedium]">{`${user.teamName || "Unknown Team"}`}</p>
+        <p className="text-neutral-900 text-base font-[degularmedium]">{`Location: ${user.location}`}</p>
+        <p className="text-neutral-900 text-base font-[degularmedium]">{`Is Active: ${user.isActive}`}</p>
       </div>
     </div>
   );

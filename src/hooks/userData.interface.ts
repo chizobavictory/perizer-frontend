@@ -15,4 +15,5 @@ export interface UserData {
   email: string;
   phone: string;
   location: string;
+  teamName: string;
 }
